@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  client:
+    container_name: client_node
+    image: react-app
+    ports:
+      - '3000:3000'
+    volumes:
+      - './client:/home/client_node/app'
+    networks:
+      - my-network
+  server:
+    container_name: server_node
+    image: 'node:latest'
+    working_dir: /home/server_node/app
+    env_file:
+      - .env
+    command:
+      - /bin/sh
+      - '-c'
+      - 'npm install bcrypt mongoose express jsonwebtoken nodemon && npm start'
+    ports:
+      - '3001:3001'
+    volumes:
+      - './server:/home/server_node/app'
+    links:
+      - mongo
+    networks:
+      - my-network
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
