@@ -19,7 +19,7 @@ server.use(express.json());
 // const commentRoute = require("./api/routes/commentRoute");
 // commentRoute(server);
 
-// const userRoute = require("./api/routes/userRoute");
-// userRoute(server);
+const userRoute = require("./api/routes/userRoute.js");
+userRoute(server);
 
 server.listen(port, hostname);
