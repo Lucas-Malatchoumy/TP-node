@@ -33,7 +33,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-    - ./mongo:/home/data/db
+    - ./mongo:/data/db
     networks:
       - my-network
 networks:
