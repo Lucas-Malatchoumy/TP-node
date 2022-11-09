@@ -1,17 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-//import { addUser } from '../api/services/user';
+import { Login } from '../services/user';
 import Form from 'react-bootstrap/Form';
 import { useQueryClient, useMutation } from 'react-query';
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 
 export default function NewUser() {
-    const addUser = () => console.log('hey');
     const queryClient = useQueryClient();
     const navigate = useNavigate();
-    const { mutateAsync, isSuccess } = useMutation(addUser);
+    const { mutateAsync, isSuccess } = useMutation(Login);
     const { control, handleSubmit } = useForm({
         defaultValues: {
           email: '',
@@ -19,17 +18,17 @@ export default function NewUser() {
         }
       });
       const onSubmit = async (data) => {
-        // await mutateAsync(data)
+        await mutateAsync(data)
         alert('hello')
       };
-    //   if (isSuccess) {
-    //     queryClient.invalidateQueries('usersData')
-    //     setTimeout(() => {
-    //         navigate("/")
-    //       }, 1000)
-    //   }
+      if (isSuccess) {
+        queryClient.invalidateQueries('usersData')
+        setTimeout(() => {
+            navigate("/")
+          }, 1000)
+      }
   return (
-    <Form className='w-25 mx-auto' onSubmit={handleSubmit(onSubmit)}>
+    <Form className='w-50 mx-auto' onSubmit={handleSubmit(onSubmit)}>
       <Row className='mb-3'>
         <Form.Group as={Col} controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
