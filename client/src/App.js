@@ -1,5 +1,6 @@
 import "./App.css";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import NewPost from "./pages/CreatePost";
 import { AuthProtected, AdminProtected } from "./utils/privateRoutes";
 import BasicExample from "./pages/Home";
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
         <Route element={<AuthProtected />}>
           <Route path="/" element={<BasicExample />} />
           <Route element={<AdminProtected />}>

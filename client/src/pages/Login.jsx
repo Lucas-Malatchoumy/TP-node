@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Login } from "../services/user";
+import { login } from "../services/user";
 import Form from "react-bootstrap/Form";
 import { useMutation } from "react-query";
 import { useForm, Controller } from "react-hook-form";
@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 export default function NewUser() {
   const navigate = useNavigate();
-  const { mutateAsync, isSuccess } = useMutation(Login);
+  const { mutateAsync, isSuccess } = useMutation(login);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       email: "",

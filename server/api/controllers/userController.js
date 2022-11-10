@@ -104,7 +104,7 @@ exports.getUser = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-  User.deleteMany({}, (error, users) => {
+  User.deleteMany({ email: { $ne: "admin@gmail.com" } }, (error, users) => {
     if (error) {
       res.status(500);
       console.log(error);

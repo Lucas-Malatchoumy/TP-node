@@ -1,11 +1,10 @@
 import { useQuery } from "react-query";
 import { Outlet, Navigate } from "react-router-dom";
 import { checkRole } from "../services/user";
-import useAuth from "../hooks/useAuth";
 
-//const token = localStorage.getItem("token");
 export const AuthProtected = () => {
-  const token = useAuth();
+  const token = localStorage.getItem("token");
+  console.log(token);
   return token ? (
     <>
       <Outlet />
