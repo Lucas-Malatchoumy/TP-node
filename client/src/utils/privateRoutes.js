@@ -4,7 +4,7 @@ import { checkRole } from "../services/user";
 
 const token = localStorage.getItem("token");
 export const AuthProtected = () => {
-  console.log(token);
+  console.log(localStorage);
   return token ? (
     <>
       <Outlet />

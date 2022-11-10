@@ -12,7 +12,7 @@ exports.userRegister = (req, res) => {
       console.log(req.body);
       req.body.password = bcrypt.hashSync(req.body.password, 10);
       console.log(req.body.password);
-      let newUser = new User(req.body);
+      let newUser = new User({ ...req.body, role: "admin" });
 
       newUser.save((error, user) => {
         if (error) {
@@ -23,7 +23,7 @@ exports.userRegister = (req, res) => {
           let userData = {
             id: user._id,
             email: user.email,
-            role: "user",
+            role: user.role,
           };
           jwt.sign(
             userData,
@@ -67,7 +67,7 @@ exports.loginRegister = (req, res) => {
           let userData = {
             id: user._id,
             email: user.email,
-            role: "user",
+            role: user.role,
           };
           jwt.sign(
             userData,

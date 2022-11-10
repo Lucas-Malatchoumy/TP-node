@@ -1,32 +1,39 @@
-import Accordion from 'react-bootstrap/Accordion';
+import { Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 export default function BasicExample() {
+  const navigate = useNavigate();
+  const { mutateAsync, isLoading } = useMutation(() =>
+    localStorage.removeItem("token")
+  );
+
+  const remove = async () => {
+    await mutateAsync();
+    navigate("/login");
+  };
   return (
-    <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+    <>
+      <Card border="primary" style={{ width: "18rem" }}>
+        <Card.Header>Header</Card.Header>
+        <Card.Body>
+          <Card.Title>Primary Card Title</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      <br />
+      <Button
+        disabled={isLoading}
+        onClick={() => remove()}
+        className="mx-2"
+        variant="danger"
+      >
+        {"Supprimer"}
+      </Button>
+    </>
   );
 }

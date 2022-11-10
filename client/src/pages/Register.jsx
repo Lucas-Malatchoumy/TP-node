@@ -3,12 +3,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Login } from "../services/user";
 import Form from "react-bootstrap/Form";
-import { useMutation } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function NewUser() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutateAsync, isSuccess } = useMutation(Login);
   const { control, handleSubmit } = useForm({
@@ -20,11 +20,10 @@ export default function NewUser() {
   const onSubmit = async (data) => {
     await mutateAsync(data);
   };
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/");
-    }
-  }, [isSuccess, navigate]);
+  if (isSuccess) {
+    queryClient.invalidateQueries("usersData");
+    navigate("/");
+  }
   return (
     <Form className="w-50 mx-auto" onSubmit={handleSubmit(onSubmit)}>
       <Row className="mb-3">

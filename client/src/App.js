@@ -2,7 +2,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import { AuthProtected, AdminProtected } from "./utils/privateRoutes";
 import BasicExample from "./pages/Home";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
