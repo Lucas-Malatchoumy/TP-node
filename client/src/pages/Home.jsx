@@ -24,8 +24,8 @@ export default function BasicExample() {
       {posts.map((post) => {
         return (
           <Card border="primary" style={{ width: "18rem" }}>
+            <Card.Header>{post.title}</Card.Header>
             <Card.Body>
-              <Card.Title>Primary Card Title</Card.Title>
               <Card.Text>{post.content}</Card.Text>
             </Card.Body>
           </Card>
