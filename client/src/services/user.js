@@ -10,8 +10,14 @@ export const checkRole = async () => {
   return response.data;
 };
 
-export const Login = async (data) => {
+export const login = async (data) => {
   const response = await axios.post(`${baseURL}/user/login`, data);
+  localStorage.setItem("token", response.data.token);
+  return;
+};
+
+export const register = async (data) => {
+  const response = await axios.post(`${baseURL}/user/register`, data);
   localStorage.setItem("token", response.data.token);
   return;
 };
