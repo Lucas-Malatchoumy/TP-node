@@ -4,7 +4,8 @@ module.exports = (server) => {
   server
     .route("/posts")
     .get(postController.listAllPosts)
-    .post(postController.createAPost);
+    .post(postController.createAPost)
+    .delete(postController.deleteAll);
 
   server
     .route("/posts/:post_id")

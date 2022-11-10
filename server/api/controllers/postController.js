@@ -81,3 +81,16 @@ exports.deleteApost = (req, res) => {
     }
   });
 };
+
+exports.deleteAll = (req, res) => {
+  Post.deleteMany({}, (error, posts) => {
+    if (error) {
+      res.status(500);
+      console.log(error);
+      res.json({ message: "Erreur serveur." });
+    } else {
+      res.status(200);
+      res.json(posts);
+    }
+  });
+};
