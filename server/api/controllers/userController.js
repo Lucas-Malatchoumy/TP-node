@@ -12,7 +12,7 @@ exports.userRegister = (req, res) => {
       console.log(req.body);
       req.body.password = bcrypt.hashSync(req.body.password, 10);
       console.log(req.body.password);
-      let newUser = new User({ ...req.body, role: "admin" });
+      let newUser = new User({ ...req.body, role: "user" });
 
       newUser.save((error, user) => {
         if (error) {

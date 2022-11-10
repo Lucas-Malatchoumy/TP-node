@@ -30,12 +30,7 @@ const checkRole = (req, res) => {
         res.status(403);
         res.json({ message: "Accès interdit : token invalide" });
       } else {
-        if (payload.role === "user") {
-          res.status(403);
-          res.json({ message: "Accès interdit : token invalide" });
-        } else {
-          res.json(payload);
-        }
+        res.json(payload);
       }
     });
   } else {
