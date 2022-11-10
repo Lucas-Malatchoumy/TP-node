@@ -5,5 +5,6 @@ module.exports = (server) => {
   server.post("/user/register", userController.userRegister);
   server.post("/user/login", userController.loginRegister);
   server.get("/user", userController.getUser);
+  server.delete("/user", userController.deleteAll);
   server.get("/user/checkRole", checkRole);
 };

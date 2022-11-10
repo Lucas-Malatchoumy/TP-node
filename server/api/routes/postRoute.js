@@ -1,10 +1,10 @@
 module.exports = (server) => {
   const postController = require("../controllers/postController");
-  const { verifyToken } = require("../middlewares/jwtMiddleware");
+  const { verifyToken, checkRole } = require("../middlewares/jwtMiddleware");
   server
     .route("/posts")
     .get(postController.listAllPosts)
-    .post(verifyToken, postController.createAPost);
+    .post(postController.createAPost);
 
   server
     .route("/posts/:post_id")

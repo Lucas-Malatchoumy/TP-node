@@ -30,8 +30,9 @@ exports.createAPost = (req, res) => {
         console.log(error);
         res.json({ message: "Reqûete invalide." });
       } else {
-        res.status(201);
+        res.status(200);
         res.json(post);
+        return;
       }
     });
   });
