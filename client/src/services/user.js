@@ -8,6 +8,7 @@ export const checkRole = async () => {
       Authorization: localStorage.getItem("token"),
     },
   });
+  console.log(response);
   return response.data;
 };
 

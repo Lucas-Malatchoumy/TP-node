@@ -15,15 +15,11 @@ export const AuthProtected = () => {
 };
 
 export const AdminProtected = () => {
-  const { status, data, error } = useQuery("usersData", checkRole);
+  const { status, data } = useQuery("usersData", checkRole);
   if (status === "loading") {
     return <span>Loading...</span>;
   }
-
-  if (status === "error") {
-    return <span>Error: {error.message}</span>;
-  }
-  return data.role === "user" ? (
+  return data ? (
     <>
       <Outlet />
     </>
