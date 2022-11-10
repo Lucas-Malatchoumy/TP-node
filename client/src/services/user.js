@@ -7,5 +7,7 @@ export const getUsers = async () => {
 };
 
 export const Login = async (data) => {
-  return await axios.post(`${baseURL}/user/login`, data);
+  const response = await axios.post(`${baseURL}/user/login`, data);
+  localStorage.setItem("token", response.data.token);
+  return;
 };

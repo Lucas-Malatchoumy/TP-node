@@ -19,7 +19,6 @@ export default function NewUser() {
       });
       const onSubmit = async (data) => {
         await mutateAsync(data)
-        alert('hello')
       };
       if (isSuccess) {
         queryClient.invalidateQueries('usersData')
