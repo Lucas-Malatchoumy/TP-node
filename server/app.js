@@ -21,8 +21,8 @@ const mongoose = require("mongoose");
 // mongoose.connect("mongodb://localhost:27017/apinode"); // Whithout Docker
 mongoose.connect("mongodb://mongo/apinode");
 
-// const postRoute = require("./api/routes/postRoute");
-// postRoute(server);
+const postRoute = require("./api/routes/postRoute");
+postRoute(server);
 
 // const commentRoute = require("./api/routes/commentRoute");
 // commentRoute(server);
