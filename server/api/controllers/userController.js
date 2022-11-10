@@ -20,8 +20,29 @@ exports.userRegister = (req, res) => {
           console.log(error);
           res.json({ message: "Reqûete invalide." });
         } else {
-          res.status(201);
-          res.json({ message: `Utilisateur crée : ${user.email}` });
+          let userData = {
+            id: user._id,
+            email: user.email,
+            role: "user",
+          };
+          jwt.sign(
+            userData,
+            process.env.JWT_KEY,
+            { expiresIn: "30 days" },
+            (error, token) => {
+              if (error) {
+                res.status(500);
+                console.log(error);
+                res.json({ message: "Impossible de générer le token" });
+              } else {
+                res.status(201);
+                res.json({
+                  token,
+                  message: `Utilisateur crée : ${user.email}`,
+                });
+              }
+            }
+          );
         }
       });
     }
@@ -46,7 +67,7 @@ exports.loginRegister = (req, res) => {
           let userData = {
             id: user._id,
             email: user.email,
-            role: "admin",
+            role: "user",
           };
           jwt.sign(
             userData,
