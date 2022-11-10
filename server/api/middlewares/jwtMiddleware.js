@@ -23,7 +23,6 @@ const verifyToken = (req, res, next) => {
 
 const checkRole = (req, res) => {
   let token = req.headers["authorization"];
-
   if (token !== undefined) {
     jwt.verify(token, jwtKey, (error, payload) => {
       if (error) {
