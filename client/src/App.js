@@ -1,5 +1,6 @@
 import "./App.css";
 import Login from "./pages/Login";
+import NewPost from "./pages/CreatePost";
 import { AuthProtected, AdminProtected } from "./utils/privateRoutes";
 import BasicExample from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
@@ -13,7 +14,7 @@ function App() {
         <Route element={<AuthProtected />}>
           <Route path="/" element={<BasicExample />} />
           <Route element={<AdminProtected />}>
-            <Route path="/createPost" element={<BasicExample />} />
+            <Route path="/createPost" element={<NewPost />} />
           </Route>
         </Route>
       </Routes>
