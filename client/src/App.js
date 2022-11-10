@@ -1,6 +1,6 @@
 import "./App.css";
 import Login from "./pages/Login";
-import Protected from "./utils/privateRoutes";
+import { AuthProtected, AdminProtected } from "./utils/privateRoutes";
 import BasicExample from "./pages/Home";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,8 +10,11 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/Login" element={<Login />} />
-        <Route element={<Protected />}>
+        <Route element={<AuthProtected />}>
           <Route path="/" element={<BasicExample />} />
+          <Route element={<AdminProtected />}>
+            <Route path="/createPost" element={<BasicExample />} />
+          </Route>
         </Route>
       </Routes>
     </div>
