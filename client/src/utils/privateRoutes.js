@@ -1,10 +1,11 @@
 import { useQuery } from "react-query";
 import { Outlet, Navigate } from "react-router-dom";
 import { checkRole } from "../services/user";
+import useAuth from "../hooks/useAuth";
 
-const token = localStorage.getItem("token");
+//const token = localStorage.getItem("token");
 export const AuthProtected = () => {
-  console.log(localStorage);
+  const token = useAuth();
   return token ? (
     <>
       <Outlet />
@@ -15,11 +16,15 @@ export const AuthProtected = () => {
 };
 
 export const AdminProtected = () => {
-  const { status, data } = useQuery("usersData", checkRole);
+  const { status, data, error } = useQuery("usersData", checkRole);
   if (status === "loading") {
     return <span>Loading...</span>;
   }
-  return data ? (
+
+  if (status === "error") {
+    return <span>Error: {error.message}</span>;
+  }
+  return data.role === "admin" ? (
     <>
       <Outlet />
     </>
