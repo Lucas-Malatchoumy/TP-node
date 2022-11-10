@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
         res.status(403);
         res.json({ message: "Accès interdit : token invalide" });
       } else {
-        res.json(payload);
+        next();
       }
     });
   } else {
@@ -21,4 +21,28 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken };
+const checkRole = (req, res) => {
+  let token = req.headers["authorization"];
+
+  if (token !== undefined) {
+    jwt.verify(token, jwtKey, (error, payload) => {
+      if (error) {
+        console.log(error);
+        res.status(403);
+        res.json({ message: "Accès interdit : token invalide" });
+      } else {
+        if (payload.role === "user") {
+          res.status(403);
+          res.json({ message: "Accès interdit : token invalidee" });
+        } else {
+          res.json(payload);
+        }
+      }
+    });
+  } else {
+    res.status(403);
+    res.json({ message: "Accès interdit : token manquant" });
+  }
+};
+
+module.exports = { verifyToken, checkRole };
