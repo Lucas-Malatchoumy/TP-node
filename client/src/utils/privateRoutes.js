@@ -1,12 +1,14 @@
 import { useQuery } from "react-query";
 import { Outlet, Navigate } from "react-router-dom";
 import { checkRole } from "../services/user";
+import NavbarLog from "../components/Navbar";
 
 export const AuthProtected = () => {
   const token = localStorage.getItem("token");
   console.log(token);
   return token ? (
     <>
+      <NavbarLog />
       <Outlet />
     </>
   ) : (
@@ -15,15 +17,8 @@ export const AuthProtected = () => {
 };
 
 export const AdminProtected = () => {
-  const { status, data, error } = useQuery("usersData", checkRole);
-  if (status === "loading") {
-    return <span>Loading...</span>;
-  }
-
-  if (status === "error") {
-    return <span>Error: {error.message}</span>;
-  }
-  return data.role === "admin" ? (
+  const { data: admin } = useQuery("usersData", checkRole);
+  return admin ? (
     <>
       <Outlet />
     </>
