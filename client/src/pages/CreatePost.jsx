@@ -28,6 +28,7 @@ export default function NewPost() {
   }, [isSuccess, navigate, queryClient]);
   return (
     <Form className="w-50 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="text-center mb-5">New post</h1>
       <Form.Group as={Col} controlId="formBasicEmail">
         <Form.Label>Title</Form.Label>
         <Controller

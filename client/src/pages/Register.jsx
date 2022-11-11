@@ -27,6 +27,7 @@ export default function NewUser() {
   }, [isSuccess, navigate]);
   return (
     <Form className="w-50 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="text-center my-5">Sign up</h1>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
@@ -53,9 +54,18 @@ export default function NewUser() {
           />
         </Form.Group>
       </Row>
-      <Button className="mt-3" variant="success" type="submit">
-        Envoyer
-      </Button>
+      <div className="d-flex flex-column">
+        <Button className="mt-3" variant="primary" type="submit">
+          Sign up !
+        </Button>
+        <Button
+          className="mt-3"
+          variant="success"
+          onClick={() => navigate("/login")}
+        >
+          You already have an account ? Log in !
+        </Button>
+      </div>
     </Form>
   );
 }
