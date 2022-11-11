@@ -20,6 +20,10 @@ export const CreatePost = async (data) => {
 };
 
 export const getPosts = async () => {
-  const response = await axios.get(`${baseURL}/posts`);
+  const response = await axios.get(`${baseURL}/posts`, {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  });
   return response.data;
 };
