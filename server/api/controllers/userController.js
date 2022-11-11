@@ -90,7 +90,7 @@ exports.loginRegister = (req, res) => {
   });
 };
 
-exports.getUser = (req, res) => {
+exports.getUsers = (req, res) => {
   User.find({}, (error, users) => {
     if (error) {
       res.status(500);
@@ -99,6 +99,20 @@ exports.getUser = (req, res) => {
     } else {
       res.status(200);
       res.json(users);
+    }
+  });
+};
+
+exports.getUser = (req, res) => {
+  const id = req.id;
+  User.findById(id, (error, post) => {
+    if (error) {
+      res.status(500);
+      console.log(error);
+      res.json({ message: "Erreur serveur." });
+    } else {
+      res.status(200);
+      res.json(post);
     }
   });
 };

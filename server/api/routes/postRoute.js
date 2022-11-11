@@ -3,14 +3,7 @@ module.exports = (server) => {
   const { verifyToken, checkRole } = require("../middlewares/jwtMiddleware");
   server
     .route("/posts")
-    .get(postController.listAllPosts)
-    .post(postController.createAPost)
+    .get(verifyToken, postController.listAllPosts)
+    .post(checkRole, postController.createAPost)
     .delete(postController.deleteAll);
-
-  server
-    .route("/posts/:post_id")
-    .all(verifyToken)
-    .get(postController.getAPost)
-    .put(postController.updateAPost)
-    .delete(postController.deleteApost);
 };
