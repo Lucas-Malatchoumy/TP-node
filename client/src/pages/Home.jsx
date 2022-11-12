@@ -13,11 +13,11 @@ export default function BasicExample() {
   return (
     <div>
       <h1 className="text-center">Recent posts</h1>
-      <Row xs={1} md={3} className="g-4 mt-5">
+      <Row xs={1} md={3} className="g-4 mt-5 mx-auto">
         {posts.reverse().map((post) => {
           return (
-            <Col key={post._id}>
-              <Card border="primary" style={{ width: "18rem" }}>
+            <Col className="d-flex justify-content-center" key={post._id}>
+              <Card bg="dark" style={{ width: "18rem" }}>
                 <Card.Header>{post.title}</Card.Header>
                 <Card.Body>
                   <Card.Text>{post.content}</Card.Text>
