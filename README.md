@@ -19,6 +19,12 @@ Go to the project directory
   cd TP-node
 ```
 
+Go to develop branch : 
+
+```bash
+  git checkout develop
+```
+
 Create folder for database volume :
 
 ```bash
