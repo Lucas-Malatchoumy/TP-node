@@ -29,16 +29,11 @@ Create .env file to store your JWT Key  :
 
 `JWT_KEY='Your key here'`
 
-Build react-app image for the front-end :
+
+Start and build the app with docker compose :
 
 ```bash
-  docker build -t react-app .
-```
-
-Start the app with docker compose :
-
-```bash
-  docker-compose up (-d) .
+  docker-compose up --build (-d) .
 ```
 
 
