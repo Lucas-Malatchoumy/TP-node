@@ -33,7 +33,7 @@ const checkRole = (req, res, next) => {
         if (payload.role !== "admin") {
           res.json(false);
         } else {
-          res.json(true);
+          next();
         }
       }
     });

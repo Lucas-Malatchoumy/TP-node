@@ -129,3 +129,7 @@ exports.deleteAll = (req, res) => {
     }
   });
 };
+
+exports.isAdmin = (req, res) => {
+  res.json(true);
+};

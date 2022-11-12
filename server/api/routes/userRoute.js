@@ -6,5 +6,5 @@ module.exports = (server) => {
   server.post("/user/login", userController.loginRegister);
   server.get("/user", userController.getUsers);
   server.delete("/user", userController.deleteAll);
-  server.get("/user/checkRole", checkRole, userController.getUser);
+  server.get("/user/checkRole", checkRole, userController.isAdmin);
 };
