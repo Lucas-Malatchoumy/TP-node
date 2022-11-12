@@ -31,11 +31,9 @@ const checkRole = (req, res, next) => {
         res.json({ message: "Accès interdit : token invalide" });
       } else {
         if (payload.role !== "admin") {
-          res.status(403);
-          res.json({ message: "Accès interdit : vous n'avez pas les droits" });
+          res.json(false);
         } else {
-          req.id = payload.id;
-          next();
+          res.json(true);
         }
       }
     });

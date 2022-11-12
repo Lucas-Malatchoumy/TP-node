@@ -5,7 +5,6 @@ import NavbarLog from "../components/Navbar";
 
 export const AuthProtected = () => {
   const token = localStorage.getItem("token");
-  console.log(token);
   return token ? (
     <>
       <NavbarLog />
@@ -17,8 +16,8 @@ export const AuthProtected = () => {
 };
 
 export const AdminProtected = () => {
-  const { data: admin } = useQuery("usersData", checkRole);
-  return admin ? (
+  const { data: isAdmin } = useQuery("isAdmin", checkRole);
+  return isAdmin ? (
     <>
       <Outlet />
     </>

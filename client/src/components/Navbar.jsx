@@ -1,24 +1,32 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { checkRole } from "../services/user";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const NavbarLog = () => {
-  const { data } = useQuery("usersData", checkRole);
+  const { data: isAdmin } = useQuery("isAdmin", checkRole);
   const navigate = useNavigate();
-  const { mutateAsync, isLoading } = useMutation(() =>
+  const queryClient = useQueryClient();
+  const { mutateAsync, isLoading, isSuccess } = useMutation(() =>
     localStorage.removeItem("token")
   );
 
   const remove = async () => {
     await mutateAsync();
-    navigate("/login");
+    //console.log(queryClient.invalidateQueries("isAdmin"));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/login");
+    }
+  }, [isSuccess, navigate, queryClient]);
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -28,7 +36,7 @@ const NavbarLog = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            {data && (
+            {isAdmin && (
               <NavLink to={"/createPost"}>
                 <Button className="mx-2" variant="outline-success">
                   Ctreate new post
