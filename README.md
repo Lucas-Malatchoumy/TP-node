@@ -57,7 +57,7 @@ To create admin account, you need to change the role by default to "admin" in /s
 ```javascript
 let newUser = new User({ ...req.body, role: "user" });
 ```
-After save the change you can Sign in the application and you well see the link to create posts
+After save the change, you can Sign up and you will see the link to create posts
 
 
 ## Tech Stack
